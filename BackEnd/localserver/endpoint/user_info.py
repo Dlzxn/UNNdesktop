@@ -1,8 +1,9 @@
-from typing import TextIO
-
 from fastapi import APIRouter
 import json
+
+
 from BackEnd.localserver.endpoint.models.user_model import User
+from BackEnd.logger_cfg.logg_comfig import logger
 
 
 router_api = APIRouter(prefix="/user")
@@ -17,7 +18,14 @@ async def new_user(data: User):
 
 @router_api.get("/getUserInfo")
 async def get_user_info():
-    with open("data/user/cfg.json", "r") as file:
-        data: None | dict = json.load(file)
+    try:
+        with open("data/user/cfg.json", "r") as file:
+            data: None | dict = json.load(file)
 
-    return data
+        return data
+    except FileNotFoundError:
+        logger.error("No cfg.json found")
+        return None
+    except Exception as e:
+        logger.error(e)
+        return None
