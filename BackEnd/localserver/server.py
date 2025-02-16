@@ -3,15 +3,24 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
+import aiohttp
 
 
+from BackEnd.localserver.endpoint.user_info import router_api
 app = FastAPI()
+app.include_router(router_api)
 
 templates = Jinja2Templates(directory="FrontEnd/templates")
 
 @app.get("/")
 async def main_menu(request: Request):
-    return templates.TemplateResponse("main_screen.html", {"request": request, "title": "Main"})
+    async with aiohttp.ClientSession() as session:
+        data = await session.get("http://0.0.0.0:8000/user/getUserInfo")
+        print(data)
+    if data:
+        pass
+    else:
+        return templates.TemplateResponse("login.html", {"request": request, "title": "Main"})
 
 
 def start_server():

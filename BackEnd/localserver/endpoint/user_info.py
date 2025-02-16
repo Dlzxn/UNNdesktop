@@ -10,6 +10,7 @@ router_api = APIRouter(prefix="/user")
 
 @router_api.post("/newUser")
 async def new_user(data: User):
+    print(data)
     with open("data/user/cfg.json", "w") as file:
         json.dump(data, file)
 
