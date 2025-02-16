@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/mainstyle.css">
+    <link rel="icon" href="">
+    {% block title %}
+        <title>{{ title }}</title>
+    {% endblock %}
+</head>
+
+<body>
+
+    <nav class="menu">
+        <div class="menu_container">
+            <ul class="menu_list">
+                <li class="menu_item"><a href="#" class="menu_link">1</a></li>
+                <li class="menu_item"><a href="#" class="menu_link">2</a></li>
+                <li class="menu_item"><a href="#" class="menu_link">3</a></li>
+                <li class="menu_item"><a href="#" class="menu_link">4</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container send-message-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
