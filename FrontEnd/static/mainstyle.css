@@ -1,2 +1,101 @@
 @import url('./normalize.css');
 
+:root {
+    --body-background-color: #4d8eff;
+    --color-white: #fff;
+}
+
+
+body {
+    font-size: 1.2em;
+    background: var(--body-background-color);
+    background-image: url('/FrontEnd/img/clouds.png');
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transition: all ease .3s;
+}
+
+
+/* Container */
+.container {
+    margin: 0 auto;
+
+    width: 100%;
+    max-width: 1300px;
+
+    height: 100vh;
+}
+
+/* Menu */
+.menu {
+    padding: 10px 10px;
+}
+
+.menu_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.menu_logo {
+    display: block;
+}
+
+.menu_list {
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.menu_item {
+    margin-left: 15px;
+}
+
+.menu_item:first-child {
+    margin-left: 0px;
+}
+
+.menu_link {
+    width: 100%;
+    color: var(--color-white);
+}
+
+.menu_link:hover {
+    text-decoration: underline;
+}
+
+.menu_link__active {
+    text-decoration: underline;
+}
+
+/* Menu Profile */
+.menu-profile {
+}
+
+.menu-profile_container {
+}
+
+.menu-profile_list {
+
+}
+
+.menu-profile_item {
+    margin-left: 15px;
+}
+
+.menu-profile_item:first-child {
+    margin-left: 0;
+}
+
+.menu-profile_link, .button-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-profile_link :hover {
+}

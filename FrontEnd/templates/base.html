@@ -4,23 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/mainstyle.css">
-    <link rel="icon" href="">
+    <link rel="icon" href="/FrontEnd/img/icon/favicon.ico">
 </head>
 
 <body>
 
     <nav class="menu">
         <div class="menu_container">
+
+            <a href="#" class="menu_logo">
+                <img src="/FrontEnd/img/unn_logo.png" alt="logo">
+            </a>
+
             <ul class="menu_list">
-                <li class="menu_item"><a href="#" class="menu_link">1</a></li>
-                <li class="menu_item"><a href="#" class="menu_link">2</a></li>
-                <li class="menu_item"><a href="#" class="menu_link">3</a></li>
-                <li class="menu_item"><a href="#" class="menu_link">4</a></li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Новсости</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Расписание</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#" class="menu_link">Зачетная книжка</a>
+                </li>
+            </ul>
+
+            <ul class="menu-profile">
+                <div class="menu-profile_container menu_container"></div>
+                <ul class="menu-profile_list menu_list">
+
+                    <li class="menu-profile-item">
+                        <a href="#" class="menu-profile_link">
+                            <img src="/FrontEnd/img/profile.svg" alt="">
+                        </a>
+                    </li>
+                    <li class="menu-profile-item">
+                        <a class="menu-profile-button-logout button-logout">
+                            <img src="/FrontEnd/img/logout.svg" alt="">
+                        </a>
+                    </li>
+
+                </ul>
             </ul>
         </div>
     </nav>
 
-    <div class="container send-message-container">
+    <div class="container">
         {% block content %}
         {% endblock %}
     </div>
