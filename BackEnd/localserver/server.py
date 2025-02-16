@@ -1,15 +1,17 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.requests import Request
 
 
 app = FastAPI()
 
+templates = Jinja2Templates(directory="FrontEnd/templates")
 
 @app.get("/")
-async def main_menu():
-    return FileResponse("FrontEnd/templates/main_screen.html")
-
+async def main_menu(request: Request):
+    return templates.TemplateResponse("main_screen.html", {"request": request, "title": "Main"})
 
 
 def start_server():
