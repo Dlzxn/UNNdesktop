@@ -1,4 +1,24 @@
-<form action="/user/newUser" method="post">
-    <input type="text" name="user_login" placeholder="login">
-    <button type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/FrontEnd/static/mainstyle.css">
+</head>
+<body>
+    <div class="login_container container">
+
+        <img class="login-logo" src="/FrontEnd/img/unn_logo.png" alt="">
+
+        <div class="card-login">
+            <div class="card-login_container">
+                <form class="login-form" action="/user/newUser" method="post">
+                    <input class="login" type="text" name="user_login" placeholder="Логи">
+                    <button class="login-button" type="submit">Войти</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
