@@ -9,8 +9,10 @@ from typing import Optional
 
 from BackEnd.localserver.Schedule_.schedule import UnnRequest
 from BackEnd.localserver.endpoint.user_info import router_api
+from BackEnd.localserver.dynamic_front.front import front
 app = FastAPI()
 app.include_router(router_api)
+app.include_router(front)
 
 templates = Jinja2Templates(directory="FrontEnd/templates")
 
@@ -31,6 +33,7 @@ async def main(request: Request):
 
 @app.get("/login")
 async def login(request: Request):
+    print("This is login")
     return templates.TemplateResponse("login.html", {"request": request, "title": "Main"})
 
 
