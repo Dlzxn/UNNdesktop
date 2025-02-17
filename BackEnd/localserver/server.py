@@ -28,7 +28,7 @@ async def main_menu(request: Request):
 
 @app.get("/main")
 async def main(request: Request):
-    return FileResponse("FrontEnd/templates/main_screen.html")
+    return templates.TemplateResponse("main_screen.html", {"request": request})
 
 
 @app.get("/login")

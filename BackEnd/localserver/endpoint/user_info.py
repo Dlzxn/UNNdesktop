@@ -16,7 +16,7 @@ async def new_user( re: Response, login: str = Form(...)):
     with open("data/user/cfg.json", "w") as file:
         json.dump(login, file)
     re.set_cookie(key = "login", value = login)
-    return RedirectResponse("/")
+    return RedirectResponse("/", status_code=302)
 
 
 @router_api.get("/getUserInfo")
@@ -37,3 +37,4 @@ async def get_user_info(re: Response):
     except Exception as e:
         logger.error(e)
         return None
+
