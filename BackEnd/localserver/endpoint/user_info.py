@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response, Form
+from fastapi.responses import RedirectResponse
 import json
 
 
@@ -10,18 +11,25 @@ router_api = APIRouter(prefix="/user")
 
 
 @router_api.post("/newUser")
-async def new_user(data: User):
-    print(data)
+async def new_user( re: Response, login: str = Form(...)):
+    print("Data in str 14", login)
     with open("data/user/cfg.json", "w") as file:
-        json.dump(data, file)
+        json.dump(login, file)
+    re.set_cookie(key = "login", value = login)
+    return RedirectResponse("/")
 
 
 @router_api.get("/getUserInfo")
-async def get_user_info():
+async def get_user_info(re: Response):
     try:
         with open("data/user/cfg.json", "r") as file:
             data: None | dict = json.load(file)
+            print(f"DATA: {data}")
+        try:
+            re.set_cookie(key = "login", value = data.login)
 
+        except Exception as e:
+            print(e)
         return data
     except FileNotFoundError:
         logger.error("No cfg.json found")
