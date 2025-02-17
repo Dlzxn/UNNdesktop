@@ -1,12 +1,13 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Cookie
 from fastapi.responses import FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from fastapi.responses import RedirectResponse
 import aiohttp
+from typing import Optional
 
-
+from BackEnd.localserver.Schedule_.schedule import UnnRequest
 from BackEnd.localserver.endpoint.user_info import router_api
 app = FastAPI()
 app.include_router(router_api)
@@ -25,12 +26,24 @@ async def main_menu(request: Request):
 
 @app.get("/main")
 async def main(request: Request):
-    return templates.TemplateResponse("main_screen.html", {"request": request, "data": data})
+    return FileResponse("FrontEnd/templates/main_screen.html")
 
 
 @app.get("/login")
 async def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request, "title": "Main"})
+
+
+
+@app.get("schedule/{start_date}:{end_date}")
+async def schedule(request: Request, start_date: str, end_date: str, cookies:  Optional[str] = Cookie(None)):
+    await UnnRequest.new_format(start_date=start_date, end_date=end_date, login = cookies.login)
+
+
+
+# @app.get("/about")
+# async def info(request: Request):
+#     return templates.TemplateResponse("about.html", {"request": request, "title": "About"})
 
 
 

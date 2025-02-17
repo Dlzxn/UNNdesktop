@@ -6,64 +6,14 @@ class UnnRequest:
     Class UnnRequest
     using for get information from API UNN
     """
-    def __init__(self, login):
-        self.login: str = login
-        print(f'login: {self.login}')
-
-        try:
-            self.get_week_dates()
-            self.__new_format()
-            self.main()
-        except Exception as e:
-            print(f"[ERROR] string 16 {e}")
-
-    def init__next(self):
-        self.login: str = self.login
-        print(f'login: {self.login}')
-
-        try:
-            self.get_next_week_date(self.start_date)
-            self.__new_format()
-            self.main()
-        except Exception as e:
-            print(f"[ERROR] string 42 {e}")
-
-
-    def init__previous(self):
-        self.login: str = self.login
-        print(f'login: {self.login}')
-
-        try:
-            self.get_previous_week_date(self.start_date)
-            self.__new_format()
-            self.main()
-        except Exception as e:
-            print(f"[ERROR] string 54 {e}")
-
-
-    def __new_format(self):
+    def new_format(self, login: str, start_date: str, end_date: str):
         """
         def for generate dynamic URL
         :return: None
         """
-        student_number: int = int(self.login[1:])
-        self.format: str = f'https://portal.unn.ru/ruzapi/schedule/student/{student_number-24073692}?start={self.start_date}&finish={self.end_date}&lng=1'
+        student_number: int = int(login[1:])
+        self.format: str = f'https://portal.unn.ru/ruzapi/schedule/student/{student_number-24073692}?start={start_date}&finish={end_date}&lng=1'
         print(f'[INFO] {self.format}')
-
-
-    @staticmethod
-    def proverka_user(self) -> bool:
-        """
-        idenification user
-        :return:
-        """
-        try:
-            asyncio.run(self.main())
-            return True
-        except Exception as e:
-            print(f"[ERROR] str 34 {e}")
-            return False
-
 
     async def get_ruz(self):
         """
@@ -82,7 +32,8 @@ class UnnRequest:
         except Exception as e:
             print(f"[ERROR] JSON Parsing or other issue: {e}")
 
-    def get_week_dates(self):
+    @staticmethod
+    def get_week_dates():
         """
         def for getting info about start/finish week dates
         :return: None
@@ -90,11 +41,13 @@ class UnnRequest:
         # Получаем текущую дату
         today = dt.date.today()
 
-        start_of_week = today - dt.timedelta(days=today.weekday())  # Понедельник текущей недели
+        start_of_week = today - dt.timedelta(days = today.weekday())  # Понедельник текущей недели
         end_of_week = start_of_week + dt.timedelta(days=6)  # Воскресенье текущей недели
 
-        self.start_date = start_of_week.strftime("%Y.%m.%d")
-        self.end_date = end_of_week.strftime("%Y.%m.%d")
+        start_date = start_of_week.strftime("%Y.%m.%d")
+        end_date = end_of_week.strftime("%Y.%m.%d")
+
+        return start_date, end_date
 
     async def get_version(self):
         try:
