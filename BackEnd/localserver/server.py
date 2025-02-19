@@ -7,7 +7,6 @@ from fastapi.responses import RedirectResponse
 import aiohttp
 from typing import Optional
 
-from BackEnd.localserver.Schedule_.schedule import UnnRequest
 from BackEnd.localserver.endpoint.user_info import router_api
 from BackEnd.localserver.dynamic_front.front import front
 app = FastAPI()
@@ -28,6 +27,7 @@ async def main_menu(request: Request):
 
 @app.get("/main")
 async def main(request: Request):
+
     return templates.TemplateResponse("main_screen.html", {"request": request})
 
 
@@ -35,12 +35,6 @@ async def main(request: Request):
 async def login(request: Request):
     print("This is login")
     return templates.TemplateResponse("login.html", {"request": request, "title": "Main"})
-
-
-
-@app.get("schedule/{start_date}:{end_date}")
-async def schedule(request: Request, start_date: str, end_date: str, cookies:  Optional[str] = Cookie(None)):
-    await UnnRequest.new_format(start_date=start_date, end_date=end_date, login = cookies.login)
 
 
 
@@ -52,3 +46,5 @@ async def schedule(request: Request, start_date: str, end_date: str, cookies:  O
 
 def start_server():
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
