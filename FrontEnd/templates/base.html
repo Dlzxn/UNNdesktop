@@ -9,44 +9,7 @@
 
 <body>
 
-    <nav class="menu">
-        <div class="menu_container">
-
-            <a href="#" class="menu_logo">
-                <img src="/FrontEnd/img/unn_logo.png" alt="logo">
-            </a>
-
-            <ul class="menu_list">
-                <li class="menu_item">
-                    <a href="#" class="menu_link">Новсости</a>
-                </li>
-                <li class="menu_item">
-                    <a href="#" class="menu_link">Расписание</a>
-                </li>
-                <li class="menu_item">
-                    <a href="#" class="menu_link">Зачетная книжка</a>
-                </li>
-            </ul>
-
-            <ul class="menu-profile">
-                <div class="menu-profile_container menu_container"></div>
-                <ul class="menu-profile_list menu_list">
-
-                    <li class="menu-profile-item">
-                        <a href="#" class="menu-profile_link">
-                            <img src="/FrontEnd/img/profile.svg" alt="">
-                        </a>
-                    </li>
-                    <li class="menu-profile-item">
-                        <a class="menu-profile-button-logout button-logout">
-                            <img src="/FrontEnd/img/logout.svg" alt="">
-                        </a>
-                    </li>
-
-                </ul>
-            </ul>
-        </div>
-    </nav>
+    {% include 'menu.html' %}
 
     <div class="container">
         {% block content %}
